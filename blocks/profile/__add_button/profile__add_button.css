@@ -18,6 +18,6 @@
     .profile__add_button {
         width: 282px;
         margin-top: 36px;
-        background:url(../../../images/Add_Button320.svg)
+        background:url(../../../images/Add_Button320.svg);
     }
 }

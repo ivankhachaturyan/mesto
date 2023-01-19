@@ -19,11 +19,10 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 620px) {
     .elements {
         max-width: 282px;
         grid-template-columns: repeat(1, auto);
         grid-template-rows: repeat(6, auto);
-
     }
 }
