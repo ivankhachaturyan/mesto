@@ -1,0 +1,20 @@
+.element__like {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 22px;
+    height: 19px;
+    border: none;
+    cursor: pointer;
+    background: url(../../../images/Vector.svg);
+    background-size: cover;
+    margin-top: 5px;
+}
+
+.element__like:hover{
+ opacity: 0.5;
+}
+
+.element__like:active {
+    background: url(../../../images/Vector_active.svg);
+}
