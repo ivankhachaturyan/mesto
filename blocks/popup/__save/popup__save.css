@@ -15,6 +15,7 @@
     text-align: center;
     margin-top: 18px;
     font-family: inherit;
+    margin-bottom: 37px;
 }
 
 .popup__save:hover {
@@ -28,5 +29,6 @@
        margin-top: 15px;
        font-size: 14px;
        line-height: 17px;
+       margin-bottom: 25px;
     }
  }

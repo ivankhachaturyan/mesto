@@ -24,5 +24,6 @@
         max-width: 282px;
         grid-template-columns: repeat(1, auto);
         grid-template-rows: repeat(6, auto);
+        margin-top: 36px;
     }
 }
