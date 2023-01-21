@@ -8,4 +8,6 @@
     justify-content: center;
     font-family: 'Inter', Helvetica, Arial, sans-serif;
     display: none;
+    align-items: center;
+    justify-items: center;
 }
