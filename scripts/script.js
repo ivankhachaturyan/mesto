@@ -37,6 +37,7 @@ function renderCards () {
     initialCards.forEach ((item) => {
         const card = template.cloneNode(true);
         card.querySelector('.element__title').textContent = item.name;
+        card.querySelector('.element__image').alt = item.name;
         card.querySelector('.element__image').src = item.link;
 
         elements.append(card)
@@ -48,13 +49,13 @@ renderCards();
 
 // Открытие попап ПР4
 const popupBtnopen = document.querySelector('.profile__button');
-const popupContainer = document.querySelector('.popup');
-const popupBtnclose = document.querySelector('.popup__close');
+const popupContainer = document.querySelector('.popup_type_form');
+const popupBtnclose = document.querySelector('.popup__close_type_form');
 const profileName = document.querySelector('.profile__name');
 const profileText = document.querySelector('.profile__text');
 const nameInput = document.querySelector('.popup__text_form_name');
 const jobInput = document.querySelector('.popup__text_form_prof');
-const formElement = document.querySelector('.popup__form'); 
+const formElement = document.querySelector('.popup__form_type_form'); 
 
 
 function openPopup () {
@@ -80,3 +81,20 @@ function handleFormSubmit (evt) {
 }
 
 formElement.addEventListener('submit', handleFormSubmit); 
+
+// Открытие попак для карточек. ПР5 
+
+const popupCardContainer = document.querySelector('.popup_type_card');
+const popupCardBtnopen = document.querySelector('.profile__add-button');
+const popupCardBtnclose = document.querySelector('.popup__close_type_card');
+
+function openPopupCard () {
+    popupCardContainer.classList.add("popup_opened");
+}
+
+function closePopupCard () {
+    popupCardContainer.classList.remove("popup_opened");
+}
+
+popupCardBtnopen.addEventListener('click', openPopupCard);
+popupCardBtnclose.addEventListener('click', closePopupCard);
