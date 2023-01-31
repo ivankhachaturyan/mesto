@@ -33,55 +33,25 @@
 
     <!-- Третий блок elements -->
     <section class="elements">
-
-      <div class="element">
-        <img class="element__image" src="./images/Karachaevsk.jpg" alt="Фото Карачаевск">
-        <div class="element__group">
-          <h2 class="element__title">Карачаевск</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="./images/Elbrys.jpg" alt="Фото Гора Эльбрус">
-        <div class="element__group">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="./images/Dombay.jpg" alt="Фото Горы Домбай">
-        <div class="element__group">
-          <h2 class="element__title">Домбай</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="./images/Elbrys.jpg" alt="Фото Гора Эльбрус">
-        <div class="element__group">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="./images/Dombay.jpg" alt="Фото Горы Домбай">
-        <div class="element__group">
-          <h2 class="element__title">Домбай</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="./images/Karachaevsk.jpg" alt="Фото Карачаевск">
-        <div class="element__group">
-          <h2 class="element__title">Карачаево-Черкесия</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </div>
     </section>
     </main>
     <!--Шестой блок Подвал  -->
     <footer class="footer">
       <p class="footer__copyright">&copy;2020 Mesto Russia</p>
     </footer>
+    <!--Блок Template шаблон карточки  -->
+
+    <template id="card-elements">
+      <div class="element">
+        <img class="element__image" src="" alt="">
+        <div class="element__group">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__like"></button>
+        </div>
+        <button type="button" class="element__delete"></button>
+      </div>
+    </template>
+    
     <!-- блок Popup -->
     <div class="popup">
       <div class="popup__container">
@@ -94,6 +64,18 @@
           <button type="button" class="popup__close"></button>
       </div>
     </div>
+    <!-- блок Popup Card 
+    <div class="popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+          <form class="popup__form" name="formpopup" method="post">
+            <input type="text" class="popup__text popup__text_form_name" name="nameId" placeholder="Название" required>
+            <input type="text" class="popup__text popup__text_form_prof" name="jobId" placeholder="Ссылка на картинку" required>
+            <button type="submit" class="popup__save">Создать</button>
+          </form>
+          <button type="button" class="popup__close"></button>
+      </div>
+    </div> -->
   </div>
   <script src="./scripts/script.js"></script>
 </body>

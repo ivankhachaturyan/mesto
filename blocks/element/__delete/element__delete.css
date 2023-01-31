@@ -1,0 +1,18 @@
+.element__delete {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    width: 18px;
+    height: 19px;
+    border: none;
+    cursor: pointer;
+    background: url(../../../images/basket.svg);
+    background-size: cover;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 244px;
+}
+
+.element__delete:hover {
+    opacity: 0.6;
+}
