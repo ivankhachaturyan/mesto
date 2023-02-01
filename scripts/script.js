@@ -1,52 +1,3 @@
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
-// Нашли переменную которую мы будем копировать(клонировать)
-const template = document.querySelector('#card-elements').content.querySelector('.element');
-
-// Нашли переменную В которую будем вкладывать карточки
-
-const elements = document.querySelector('.elements');
-
-// Создаем функцию для рендеринга карторчек 
-
-function renderCards () {
-    initialCards.forEach ((item) => {
-        const card = template.cloneNode(true);
-        card.querySelector('.element__title').textContent = item.name;
-        card.querySelector('.element__image').alt = item.name;
-        card.querySelector('.element__image').src = item.link;
-
-        elements.append(card)
-    })
-}
-
-renderCards();
-
-
 // Открытие попап ПР4
 const popupBtnopen = document.querySelector('.profile__button');
 const popupContainer = document.querySelector('.popup_type_form');
@@ -82,11 +33,41 @@ function handleFormSubmit (evt) {
 
 formElement.addEventListener('submit', handleFormSubmit); 
 
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ];
+
 // Открытие попак для карточек. ПР5 
 
 const popupCardContainer = document.querySelector('.popup_type_card');
 const popupCardBtnopen = document.querySelector('.profile__add-button');
 const popupCardBtnclose = document.querySelector('.popup__close_type_card');
+
+const titleInput = document.querySelector('.popup__text_title_card');
+const linkInput = document.querySelector('.popup__text_link_card');
 
 function openPopupCard () {
     popupCardContainer.classList.add("popup_opened");
@@ -98,3 +79,44 @@ function closePopupCard () {
 
 popupCardBtnopen.addEventListener('click', openPopupCard);
 popupCardBtnclose.addEventListener('click', closePopupCard);
+
+// Нашли переменную которую мы будем копировать(клонировать)
+const template = document.querySelector('#card-elements').content.querySelector('.element');
+
+// Нашли переменную В которую будем вкладывать карточки
+const elements = document.querySelector('.elements');
+
+// Создаем функцию для рендеринга карторчек 
+function renderCards () {
+    const cards = initialCards.map ((item) => {
+    return createCard(item);
+    })
+    elements.append(...cards);
+}
+
+renderCards();
+
+const formCardElement = document.querySelector('.popup__form_type_card'); 
+
+
+formCardElement.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const itemTitleInput = titleInput.value;
+    const itemLinkInput = linkInput.value;
+    const card = createCard({name:itemTitleInput, link:itemLinkInput});
+    elements.prepend(card);
+    closePopupCard ();
+});
+
+function createCard (item) {
+  const card = template.cloneNode(true);
+  card.querySelector('.element__title').textContent = item.name;
+  card.querySelector('.element__image').alt = item.name;
+  card.querySelector('.element__image').src = item.link;
+
+  card.querySelector('.element__delete').addEventListener('click', () => {
+    card.remove();
+  })
+
+  return card;
+}

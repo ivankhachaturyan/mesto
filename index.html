@@ -17,23 +17,23 @@
     </header>
 
     <main>
-    <!-- Второй блок profile -->
-    <section class="profile">
-      <img class="profile__avatar" src="./images/avatar_image.jpg" alt="Аватар фото">
+      <!-- Второй блок profile -->
+      <section class="profile">
+        <img class="profile__avatar" src="./images/avatar_image.jpg" alt="Аватар фото">
 
-      <div class="profile__info">
-        <div class="profile__title">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button type="button" class="profile__button"></button>
+        <div class="profile__info">
+          <div class="profile__title">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button type="button" class="profile__button"></button>
+          </div>
+          <p class="profile__text">Исследователь океана</p>
         </div>
-        <p class="profile__text">Исследователь океана</p>
-      </div>
-      <button type="button" class="profile__add-button"></button>
-    </section>
+        <button type="button" class="profile__add-button"></button>
+      </section>
 
-    <!-- Третий блок elements -->
-    <section class="elements">
-    </section>
+      <!-- Третий блок elements -->
+      <section class="elements">
+      </section>
     </main>
     <!--Шестой блок Подвал  -->
     <footer class="footer">
@@ -56,26 +56,27 @@
     <div class="popup popup_type_form">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form popup__form_type_form" name="formpopup" method="post">
-            <input type="text" class="popup__text popup__text_form_name" name="nameId" placeholder="Имя" required>
-            <input type="text" class="popup__text popup__text_form_prof" name="jobId" placeholder="Профессия" required>
-            <button type="submit" class="popup__save">Сохранить</button>
-          </form>
-          <button type="button" class="popup__close popup__close_type_form"></button>
+        <form class="popup__form popup__form_type_form" name="formpopup" method="post">
+          <input type="text" class="popup__text popup__text_form_name" name="nameId" placeholder="Имя" required>
+          <input type="text" class="popup__text popup__text_form_prof" name="jobId" placeholder="Профессия" required>
+          <button type="submit" class="popup__save">Сохранить</button>
+        </form>
+        <button type="button" class="popup__close popup__close_type_form"></button>
       </div>
     </div>
     <!-- блок Popup Card -->
     <div class="popup popup_type_card">
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-          <form class="popup__form" name="formpopup" method="post">
-            <input type="text" class="popup__text" name="nameId" placeholder="Название" required>
-            <input type="text" class="popup__text" name="jobId" placeholder="Ссылка на картинку" required>
-            <button type="submit" class="popup__save">Создать</button>
-          </form>
-          <button type="button" class="popup__close popup__close_type_card"></button>
+        <form class="popup__form popup__form_type_card" name="formpopup" method="post">
+          <input type="text" class="popup__text popup__text_title_card" name="nameId" placeholder="Название" required>
+          <input type="text" class="popup__text popup__text_link_card" name="jobId" placeholder="Ссылка на картинку"
+            required>
+          <button type="submit" class="popup__save">Создать</button>
+        </form>
+        <button type="button" class="popup__close popup__close_type_card"></button>
       </div>
-    </div> 
+    </div>
   </div>
   <script src="./scripts/script.js"></script>
 </body>
