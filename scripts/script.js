@@ -59,7 +59,7 @@ const initialCards = [
     }
   ];
 
-// Открытие попап для карточек. ПР5 
+// Открытие попап для карточек. 
 
 const popupCardContainer = document.querySelector('.popup_type_card');
 const popupCardBtnopen = document.querySelector('.profile__add-button');
@@ -120,9 +120,30 @@ function createCard (item) {
     evt.target.classList.toggle('element__like_active');
   })
 
+  card.querySelector('.element__image').addEventListener('click', openPopupImage)
 
 
   return card;
 }
 
 // Открытие попап для картинок.
+
+const popupImageContainer = document.querySelector('.popup_type_image');
+const popupImageBtnclose = document.querySelector('.popup__close_type_image');
+
+const popupImage = document.querySelector('.popup__image');
+const popupImgSubtitle = document.querySelector('.popup__subtitle');
+
+function openPopupImage (evt) {
+  popupImageContainer.classList.add("popup_opened");
+
+  popupImgSubtitle.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
+  popupImage.src = evt.target.closest('.element').querySelector('.element__image').src;
+  popupImage.alt = evt.target.closest('.element').querySelector('.element__image').alt;
+}
+
+function closePopupImage () {
+  popupImageContainer.classList.remove("popup_opened");
+}
+
+popupImageBtnclose.addEventListener('click', closePopupImage);
