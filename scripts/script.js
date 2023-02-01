@@ -8,7 +8,6 @@ const nameInput = document.querySelector('.popup__text_form_name');
 const jobInput = document.querySelector('.popup__text_form_prof');
 const formElement = document.querySelector('.popup__form_type_form'); 
 
-
 function openPopup () {
     popupContainer.classList.add("popup_opened");
     nameInput.value = profileName.textContent;
@@ -60,7 +59,7 @@ const initialCards = [
     }
   ];
 
-// Открытие попак для карточек. ПР5 
+// Открытие попап для карточек. ПР5 
 
 const popupCardContainer = document.querySelector('.popup_type_card');
 const popupCardBtnopen = document.querySelector('.profile__add-button');
@@ -117,6 +116,13 @@ function createCard (item) {
   card.querySelector('.element__delete').addEventListener('click', () => {
     card.remove();
   })
+  card.querySelector('.element__like').addEventListener('click', function(evt){
+    evt.target.classList.toggle('element__like_active');
+  })
+
+
 
   return card;
 }
+
+// Открытие попап для картинок.

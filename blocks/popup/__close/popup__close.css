@@ -9,8 +9,8 @@
     background: url(../../../images/Close_Icon.svg);
     background-size: cover;
     position: absolute;
-    margin-top: -40px;
-    margin-left: 438px;
+    top: -40px;
+    right: -40px;
 }
 
 .popup__close:hover {
@@ -21,8 +21,7 @@
     .popup__close {
         width: 20px;
         height: 20px;
-        margin-top: -36px;
-        margin-left: 262px;
-
+        top: -36px;
+        right: 0;
     }
 }
