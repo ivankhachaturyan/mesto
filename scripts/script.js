@@ -61,18 +61,26 @@ const popupImage = document.querySelector('.popup__image');
 const popupImgSubtitle = document.querySelector('.popup__subtitle');
 
 // Функции ПР4
-function openPopup () {
-    popupContainer.classList.add("popup_opened");
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileText.textContent;
+
+function openPopup (item) {
+    item.classList.add("popup_opened");
 }
 
-function closePopup () {
-    popupContainer.classList.remove("popup_opened");
+function closePopup (item) {
+  item.classList.remove("popup_opened");
 }
 
-popupBtnopen.addEventListener('click', openPopup);
-popupBtnclose.addEventListener('click', closePopup);
+
+popupBtnopen.addEventListener('click', function(){
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileText.textContent;
+  openPopup(popupContainer);
+});
+
+
+popupBtnclose.addEventListener('click', function() {
+  closePopup(popupContainer);
+});
 
 
 function handleFormSubmit (evt) {
@@ -85,16 +93,13 @@ function handleFormSubmit (evt) {
 formElement.addEventListener('submit', handleFormSubmit); 
 
 // Функции ПР5
-function openPopupCard () {
-    popupCardContainer.classList.add("popup_opened");
-}
+popupCardBtnopen.addEventListener('click', function(){
+  openPopup(popupCardContainer);
+});
 
-function closePopupCard () {
-    popupCardContainer.classList.remove("popup_opened");
-}
-
-popupCardBtnopen.addEventListener('click', openPopupCard);
-popupCardBtnclose.addEventListener('click', closePopupCard);
+popupCardBtnclose.addEventListener('click', function(){
+  closePopup(popupCardContainer);
+});
 
 // Создаем функцию для рендеринга карторчек 
 function renderCards () {
@@ -113,7 +118,7 @@ formCardElement.addEventListener('submit', (evt) => {
     const itemLinkInput = linkInput.value;
     const card = createCard({name:itemTitleInput, link:itemLinkInput});
     elements.prepend(card);
-    closePopupCard ();
+    closePopup(popupCardContainer);
 });
 
 function createCard (item) {
@@ -129,22 +134,20 @@ function createCard (item) {
     evt.target.classList.toggle('element__like_active');
   })
 
-  card.querySelector('.element__image').addEventListener('click', openPopupImage)
+  card.querySelector('.element__image').addEventListener('click', openPopupImage);
 
 
   return card;
 }
 
 function openPopupImage (evt) {
-  popupImageContainer.classList.add("popup_opened");
-
+  openPopup (popupImageContainer);
   popupImgSubtitle.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
   popupImage.src = evt.target.closest('.element').querySelector('.element__image').src;
   popupImage.alt = evt.target.closest('.element').querySelector('.element__image').alt;
+  
 }
 
-function closePopupImage () {
-  popupImageContainer.classList.remove("popup_opened");
-}
-
-popupImageBtnclose.addEventListener('click', closePopupImage);
+popupImageBtnclose.addEventListener('click', function(){
+  closePopup (popupImageContainer);
+});
