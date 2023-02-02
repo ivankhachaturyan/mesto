@@ -44,6 +44,7 @@ const popupCardBtnclose = document.querySelector('.popup__close_type_card');
 const titleInput = document.querySelector('.popup__text_title_card');
 const linkInput = document.querySelector('.popup__text_link_card');
 
+
 // Нашли переменную которую мы будем копировать(клонировать)
 const template = document.querySelector('#card-elements').content.querySelector('.element');
 
@@ -94,6 +95,8 @@ formElement.addEventListener('submit', handleFormSubmit);
 
 // Функции ПР5
 popupCardBtnopen.addEventListener('click', function(){
+  titleInput.value = titleInput.textContent;
+  linkInput.value =  linkInput.textContent;
   openPopup(popupCardContainer);
 });
 
@@ -111,7 +114,6 @@ function renderCards () {
 
 renderCards();
 
- 
 formCardElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const itemTitleInput = titleInput.value;
@@ -141,11 +143,10 @@ function createCard (item) {
 }
 
 function openPopupImage (evt) {
-  openPopup (popupImageContainer);
   popupImgSubtitle.textContent = evt.target.closest('.element').querySelector('.element__title').textContent;
   popupImage.src = evt.target.closest('.element').querySelector('.element__image').src;
   popupImage.alt = evt.target.closest('.element').querySelector('.element__image').alt;
-  
+  openPopup (popupImageContainer);
 }
 
 popupImageBtnclose.addEventListener('click', function(){
