@@ -57,13 +57,17 @@
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form popup__form_type_form" name="formpopup" method="post" novalidate>
-          <input id="popup-name" type="text" class="popup__text popup__text_form_name" name="nameId" placeholder="Имя" minlength="2" maxlength="40" required>
-          <span class="popup__input-error popup-name-error"></span>
-          
-          <input id="popup-job" type="text" class="popup__text popup__text_form_prof" name="jobId" placeholder="Профессия" minlength="2" maxlength="200" required>
-          <span class="popup__input-error popup-job-error"></span>
-
-          <button type="submit" class="popup__save">Сохранить</button>
+          <fieldset class="popup__fieldset">
+            <label class="popup__label">
+              <input id="popup-name" type="text" class="popup__text popup__text_form_name" name="nameId" placeholder="Имя" minlength="2" maxlength="40" required>
+              <span class="popup__input-error popup-name-error"></span>
+            </label>
+            <label class="popup__label">
+              <input id="popup-job" type="text" class="popup__text popup__text_form_prof" name="jobId" placeholder="Профессия" minlength="2" maxlength="200" required>
+              <span class="popup__input-error popup-job-error"></span>
+            </label>
+            <button type="submit" class="popup__save">Сохранить</button>
+          </fieldset>
         </form>
         <button type="button" class="popup__close popup__close_type_form"></button>
       </div>
@@ -73,15 +77,18 @@
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
         <form class="popup__form popup__form_type_card" name="cardpopup" method="post" novalidate>
-
-          <input id="popup-title" type="text" class="popup__text popup__text_title_card" name="nameId" placeholder="Название" minlength="2" maxlength="30" required>
-          <span class="popup__input-error popup-title-error"></span>
-
-          <input id="popup-link" type="url" class="popup__text popup__text_link_card" name="jobId" placeholder="Ссылка на картинку"
-            required>
-          <span class="popup__input-error popup-link-error"></span>
-
-          <button type="submit" class="popup__save">Создать</button>
+          <fieldset class="popup__fieldset">
+            <label class="popup__label">
+              <input id="popup-title" type="text" class="popup__text popup__text_title_card" name="nameId" placeholder="Название" minlength="2" maxlength="30" required>
+              <span class="popup__input-error popup-title-error"></span>
+            </label>
+            <label class="popup__label">
+              <input id="popup-link" type="url" class="popup__text popup__text_link_card" name="jobId" placeholder="Ссылка на картинку"
+              required>
+              <span class="popup__input-error popup-link-error"></span>
+            </label>
+            <button type="submit" class="popup__save">Создать</button>
+        </fieldset>
         </form>
         <button type="button" class="popup__close popup__close_type_card"></button>
       </div>

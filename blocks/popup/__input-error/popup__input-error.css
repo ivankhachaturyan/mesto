@@ -4,7 +4,10 @@
     color: red;
     font-size: 12px;
     line-height: 15px;
-    margin-top: 5px;
     opacity: 0;
     visibility: hidden;
+    width: 358px;
+    position: absolute;
+    left: 0;
+    top: 30px;
 }
