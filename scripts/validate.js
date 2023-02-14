@@ -1,39 +1,87 @@
 
  // Проект работа 6
- const popupFormElement = document.querySelector('.popup__form_type_form');
- const formInput = popupFormElement.querySelector('.popup__text');
+ const form = document.querySelector('.popup__form_type_form');
+ const formInput = form.querySelector('.popup__text');
 
  // Выбираем элемент ошибки на основе уникального класса 
-const formError = popupFormElement.querySelector(`.${formInput.id}-error`);
+const formError = form.querySelector(`.${formInput.id}-error`);
 
  // Функция, которая добавляет класс с ошибкой
- const showInputError = (element, errorMessage) => {
-     element.classList.add('popup__text_type_error');
+ const showInputError = (formElement, inputElement, errorMessage) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.add('popup__text_type_error');
      // Заменим содержимое span с ошибкой на переданный параметр
-     formError.textContent = errorMessage;
+     errorElement.textContent = errorMessage;
      // Показываем сообщение об ошибке
-     formError.classList.add('popup__input-error_active');
+     errorElement.classList.add('popup__input-error_active');
  };
  
  // Функция, которая удаляет класс с ошибкой
- const hideInputError = (element) => {
-     element.classList.remove('popup__text_type_error');
+ const hideInputError = (formElement, inputElement) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.remove('popup__text_type_error');
      // Скрываем сообщение об ошибке
-     formError.classList.remove('popup__input-error_active');
+     errorElement.classList.remove('popup__input-error_active');
       // Очистим ошибку
-     formError.textContent = '';
+     errorElement.textContent = '';
  };
  
  // Функция, которая проверяет валидность поля
  
- const isValid = () => {
-     if (!formInput.validity.valid) {
+ const checkInputValidity = (formElement, inputElement) => {
+     if (!inputElement.validity.valid) {
          // Если поле не проходит валидацию, покажем ошибку
-         showInputError(formInput, formInput.validationMessage);
+         showInputError(formElement, inputElement, inputElement.validationMessage);
      } else {
          // Если проходит, скроем
-         hideInputError(formInput);
+         hideInputError(formElement, inputElement);
      }
  };
  
- formInput.addEventListener('input', isValid);
+ form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+  });
+  
+  formInput.addEventListener('input', function () {
+    checkInputValidity(form, formInput);
+  });
+
+  const hasInvalidInput = (inputList) => {
+    return inputList.some ((inputElement)=>{
+      return !inputElement.validity.valid;
+    });
+ };
+
+  const toggleButtonState = (inputList, buttonElement) => {
+    if (hasInvalidInput(inputList)) {
+      buttonElement.classList.add('popup__save_type_inactive');
+    } else {
+      buttonElement.classList.remove('popup__save_type_inactive');
+    }
+  };
+
+  const setEventListeners = (formElement) => {
+    const inputList = Array.from(formElement.querySelectorAll('.popup__text'));
+    const buttonElement = formElement.querySelector('.popup__save');
+    toggleButtonState(inputList, buttonElement);
+
+    inputList.forEach ((inputElement) => {
+        inputElement.addEventListener('input', ()=>{
+            checkInputValidity(formElement,inputElement );
+            toggleButtonState(inputList, buttonElement);
+        });
+    });
+  };
+ 
+
+  const enableValidation = () => {
+    const formList = Array.from(document.querySelectorAll('.popup__form'));
+    formList.forEach((formElement)=>{
+        setEventListeners(formElement);
+    });
+  };
+
+ 
+
+
+ enableValidation(); 

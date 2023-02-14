@@ -73,9 +73,14 @@
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
         <form class="popup__form popup__form_type_card" name="cardpopup" method="post" novalidate>
-          <input type="text" class="popup__text popup__text_title_card" name="nameId" placeholder="Название" minlength="2" maxlength="30" required>
-          <input type="url" class="popup__text popup__text_link_card" name="jobId" placeholder="Ссылка на картинку"
+
+          <input id="popup-title" type="text" class="popup__text popup__text_title_card" name="nameId" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="popup__input-error popup-title-error"></span>
+
+          <input id="popup-link" type="url" class="popup__text popup__text_link_card" name="jobId" placeholder="Ссылка на картинку"
             required>
+          <span class="popup__input-error popup-link-error"></span>
+
           <button type="submit" class="popup__save">Создать</button>
         </form>
         <button type="button" class="popup__close popup__close_type_card"></button>
