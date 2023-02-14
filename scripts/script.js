@@ -33,6 +33,7 @@ const profileName = document.querySelector('.profile__name');
 const profileText = document.querySelector('.profile__text');
 const nameInput = document.querySelector('.popup__text_form_name');
 const jobInput = document.querySelector('.popup__text_form_prof');
+
 const formElement = document.querySelector('.popup__form_type_form'); 
 
 // Открытие попап для карточек. 
@@ -88,7 +89,7 @@ function handleFormSubmit (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value; 
     profileText.textContent = jobInput.value;
-    closePopup ();
+    closePopup (popupContainer);
 }
 
 formElement.addEventListener('submit', handleFormSubmit); 
@@ -118,6 +119,7 @@ formCardElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const itemTitleInput = titleInput.value;
     const itemLinkInput = linkInput.value;
+    // formPlase.reset ();
     const card = createCard({name:itemTitleInput, link:itemLinkInput});
     elements.prepend(card);
     closePopup(popupCardContainer);
