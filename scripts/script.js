@@ -26,9 +26,9 @@ const initialCards = [
 ];
 
 // Открытие попап ПР4
-const popupBtnopen = document.querySelector('.profile__button');
+const popupBtnOpen = document.querySelector('.profile__button');
 const popupContainer = document.querySelector('.popup_type_form');
-const popupBtnclose = document.querySelector('.popup__close_type_form');
+const popupBtnClose = document.querySelector('.popup__close_type_form');
 const profileName = document.querySelector('.profile__name');
 const profileText = document.querySelector('.profile__text');
 const nameInput = document.querySelector('.popup__text_form_name');
@@ -39,8 +39,8 @@ const formElement = document.querySelector('.popup__form_type_form');
 // Открытие попап для карточек. 
 
 const popupCardContainer = document.querySelector('.popup_type_card');
-const popupCardBtnopen = document.querySelector('.profile__add-button');
-const popupCardBtnclose = document.querySelector('.popup__close_type_card');
+const popupCardBtnOpen = document.querySelector('.profile__add-button');
+const popupCardBtnClose = document.querySelector('.popup__close_type_card');
 
 const titleInput = document.querySelector('.popup__text_title_card');
 const linkInput = document.querySelector('.popup__text_link_card');
@@ -57,7 +57,7 @@ const formCardElement = document.querySelector('.popup__form_type_card');
 // Открытие попап для картинок.
 
 const popupImageContainer = document.querySelector('.popup_type_image');
-const popupImageBtnclose = document.querySelector('.popup__close_type_image');
+const popupImageBtnClose = document.querySelector('.popup__close_type_image');
 
 const popupImage = document.querySelector('.popup__image');
 const popupImgSubtitle = document.querySelector('.popup__subtitle');
@@ -77,7 +77,7 @@ function closePopup (item) {
 }
 
 
-popupBtnopen.addEventListener('click', function(){
+popupBtnOpen.addEventListener('click', function(){
   nameInput.value = profileName.textContent;
   jobInput.value = profileText.textContent;
   openPopup(popupContainer);
@@ -87,7 +87,7 @@ popupBtnopen.addEventListener('click', function(){
 });
 
 
-popupBtnclose.addEventListener('click', function() {
+popupBtnClose.addEventListener('click', function() {
   closePopup(popupContainer);
 });
 
@@ -103,7 +103,7 @@ function handleFormSubmit (evt) {
 formElement.addEventListener('submit', handleFormSubmit); 
 
 // Функции ПР5
-popupCardBtnopen.addEventListener('click', function(){
+popupCardBtnOpen.addEventListener('click', function(){
   titleInput.value = titleInput.textContent;
   linkInput.value =  linkInput.textContent;
   // Добавили проверку на валидность при открытии
@@ -112,7 +112,7 @@ popupCardBtnopen.addEventListener('click', function(){
   openPopup(popupCardContainer);
 });
 
-popupCardBtnclose.addEventListener('click', function(){
+popupCardBtnClose.addEventListener('click', function(){
   closePopup(popupCardContainer);
 });
 
@@ -161,7 +161,7 @@ function openPopupImage (evt) {
   openPopup (popupImageContainer);
 }
 
-popupImageBtnclose.addEventListener('click', function(){
+popupImageBtnClose.addEventListener('click', function(){
   closePopup (popupImageContainer);
 });
 
