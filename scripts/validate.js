@@ -1,10 +1,13 @@
 
- // Проект работа 6
- const form = document.querySelector('.popup__form_type_form');
- const formInput = form.querySelector('.popup__text');
-
- // Выбираем элемент ошибки на основе уникального класса 
-const formError = form.querySelector(`.${formInput.id}-error`);
+//Проект работа 6
+configValidation({
+  // formSelector: '.popup__form',
+  // inputSelector: '.popup__input',
+  // submitButtonSelector: '.popup__button',
+  // inactiveButtonClass: 'popup__button_disabled',
+  // inputErrorClass: 'popup__input_type_error',
+  // errorClass: 'popup__error_visible'
+});
 
  // Функция, которая добавляет класс с ошибкой
  const showInputError = (formElement, inputElement, errorMessage) => {
@@ -37,14 +40,6 @@ const formError = form.querySelector(`.${formInput.id}-error`);
          hideInputError(formElement, inputElement);
      }
  };
- 
- form.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-  });
-  
-  formInput.addEventListener('input', function () {
-    checkInputValidity(form, formInput);
-  });
 
   const hasInvalidInput = (inputList) => {
     return inputList.some ((inputElement)=>{
@@ -55,8 +50,10 @@ const formError = form.querySelector(`.${formInput.id}-error`);
   const toggleButtonState = (inputList, buttonElement) => {
     if (hasInvalidInput(inputList)) {
       buttonElement.classList.add('popup__save_type_inactive');
+      buttonElement.disabled = true;
     } else {
       buttonElement.classList.remove('popup__save_type_inactive');
+      buttonElement.disabled = false;
     }
   };
 
@@ -64,24 +61,35 @@ const formError = form.querySelector(`.${formInput.id}-error`);
     const inputList = Array.from(formElement.querySelectorAll('.popup__text'));
     const buttonElement = formElement.querySelector('.popup__save');
     toggleButtonState(inputList, buttonElement);
-
+    
     inputList.forEach ((inputElement) => {
         inputElement.addEventListener('input', ()=>{
-            checkInputValidity(formElement,inputElement );
+            checkInputValidity(formElement, inputElement);
             toggleButtonState(inputList, buttonElement);
         });
     });
   };
  
-
   const enableValidation = () => {
     const formList = Array.from(document.querySelectorAll('.popup__form'));
-    formList.forEach((formElement)=>{
-        setEventListeners(formElement);
+    formList.forEach((formElement) => {
+      formElement.addEventListener('submit', function (evt) {
+        evt.preventDefault();
+      });
+      const fieldsetList = Array.from(formElement.querySelectorAll('.popup__fieldset'));
+      fieldsetList.forEach((fieldSet) => {
+      setEventListeners(fieldSet);
+  }); 
     });
   };
 
- 
+ enableValidation();
 
-
- enableValidation(); 
+//  очищает ошибки в popup
+ function validationPopupErrors (valid) { 
+  const deleteErrors = Array.from(valid.querySelectorAll('.popup__text')); 
+  deleteErrors.forEach(function (item) { 
+    hideInputError(valid, item); 
+  }); 
+  setEventListeners(valid); 
+ }

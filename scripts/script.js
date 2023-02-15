@@ -66,10 +66,14 @@ const popupImgSubtitle = document.querySelector('.popup__subtitle');
 
 function openPopup (item) {
     item.classList.add("popup_opened");
+    document.addEventListener('mousedown', closePopupWindow);
+    document.addEventListener('keydown', closePopupEsc);
 }
 
 function closePopup (item) {
   item.classList.remove("popup_opened");
+  document.removeEventListener('mousedown', closePopupWindow);
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
 
@@ -77,6 +81,9 @@ popupBtnopen.addEventListener('click', function(){
   nameInput.value = profileName.textContent;
   jobInput.value = profileText.textContent;
   openPopup(popupContainer);
+  // Добавили проверку на валидность при открытии
+  // Функция блокировки кнопки "сохранить"
+  validationPopupErrors(popupContainer);
 });
 
 
@@ -90,6 +97,7 @@ function handleFormSubmit (evt) {
     profileName.textContent = nameInput.value; 
     profileText.textContent = jobInput.value;
     closePopup (popupContainer);
+
 }
 
 formElement.addEventListener('submit', handleFormSubmit); 
@@ -98,6 +106,9 @@ formElement.addEventListener('submit', handleFormSubmit);
 popupCardBtnopen.addEventListener('click', function(){
   titleInput.value = titleInput.textContent;
   linkInput.value =  linkInput.textContent;
+  // Добавили проверку на валидность при открытии
+  // Функция блокировки кнопки "сохранить"
+  validationPopupErrors(popupCardContainer);
   openPopup(popupCardContainer);
 });
 
@@ -119,7 +130,6 @@ formCardElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const itemTitleInput = titleInput.value;
     const itemLinkInput = linkInput.value;
-    // formPlase.reset ();
     const card = createCard({name:itemTitleInput, link:itemLinkInput});
     elements.prepend(card);
     closePopup(popupCardContainer);
@@ -154,3 +164,15 @@ function openPopupImage (evt) {
 popupImageBtnclose.addEventListener('click', function(){
   closePopup (popupImageContainer);
 });
+
+ function closePopupWindow (evt) { 
+  if (evt.target === document.querySelector('.popup_opened')) {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+};
+
+function closePopupEsc (evt) {
+  if (evt.code === "Escape" && document.querySelector('.popup_opened')){
+    closePopup(document.querySelector('.popup_opened'));
+  }
+};

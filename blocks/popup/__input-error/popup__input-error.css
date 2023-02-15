@@ -11,3 +11,9 @@
     left: 0;
     top: 30px;
 }
+
+@media screen and (max-width: 600px) {
+    .popup__input-error {
+        width: 238px;
+    }
+}
