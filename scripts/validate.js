@@ -1,6 +1,6 @@
 
 //  // Проект работа 6
-const configValidation = ({
+const configObjectValidation = ({
   formSelector: '.popup__form',   
   inputSelector: '.popup__text',
   submitButtonSelector: '.popup__save',
@@ -11,7 +11,7 @@ const configValidation = ({
 }); 
 
  // Функция, которая добавляет класс с ошибкой
- const showInputError = (formElement, inputElement, errorMessage) => {
+ const showInputError = (formElement, inputElement, errorMessage, configValidation) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(configValidation.inputErrorClass);
      // Заменим содержимое span с ошибкой на переданный параметр
@@ -21,7 +21,7 @@ const configValidation = ({
  };
  
  // Функция, которая удаляет класс с ошибкой
- const hideInputError = (formElement, inputElement) => {
+ const hideInputError = (formElement, inputElement, configValidation) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(configValidation.inputErrorClass);
      // Скрываем сообщение об ошибке
@@ -32,13 +32,13 @@ const configValidation = ({
  
  // Функция, которая проверяет валидность поля
  
- const checkInputValidity = (formElement, inputElement) => {
+ const checkInputValidity = (formElement, inputElement, configValidation) => {
      if (!inputElement.validity.valid) {
          // Если поле не проходит валидацию, покажем ошибку
-         showInputError(formElement, inputElement, inputElement.validationMessage);
+         showInputError(formElement, inputElement, inputElement.validationMessage, configValidation);
      } else {
          // Если проходит, скроем
-         hideInputError(formElement, inputElement);
+         hideInputError(formElement, inputElement, configValidation);
      }
  };
  
@@ -50,8 +50,8 @@ const configValidation = ({
     });
  };
 
-  const toggleButtonState = (inputList, buttonElement) => {
-    if (hasInvalidInput(inputList)) {
+  const toggleButtonState = (inputList, buttonElement, configValidation) => {
+    if (hasInvalidInput(inputList, configValidation)) {
       buttonElement.classList.add(configValidation.inactiveButtonClass);
       buttonElement.disabled = true;
     } else {
@@ -60,20 +60,20 @@ const configValidation = ({
     }
   };
 
-  const setEventListeners = (formElement) => {
+  const setEventListeners = (formElement, configValidation) => {
     const inputList = Array.from(formElement.querySelectorAll(configValidation.inputSelector));
     const buttonElement = formElement.querySelector(configValidation.submitButtonSelector);
-    toggleButtonState(inputList, buttonElement);
+    toggleButtonState(inputList, buttonElement, configValidation);
     
     inputList.forEach ((inputElement) => {
         inputElement.addEventListener('input', ()=>{
-            checkInputValidity(formElement, inputElement);
-            toggleButtonState(inputList, buttonElement);
+            checkInputValidity(formElement, inputElement, configValidation);
+            toggleButtonState(inputList, buttonElement, configValidation);
         });
     });
   };
  
-  const enableValidation = () => {
+  const enableValidation = (configValidation) => {
     const formList = Array.from(document.querySelectorAll(configValidation.formSelector));
     formList.forEach((formElement) => {
       formElement.addEventListener('submit', function (evt) {
@@ -81,17 +81,16 @@ const configValidation = ({
       });
       const fieldsetList = Array.from(formElement.querySelectorAll(configValidation.fieldsetSelector));
       fieldsetList.forEach((fieldSet) => {
-      setEventListeners(fieldSet);
+      setEventListeners(fieldSet, configValidation);
   }); 
     });
   };
+ // Добавляем новое название переменной в цункцию. 
+ enableValidation(configObjectValidation);
 
- enableValidation();
-
- function validationPopupErrors (valid) { 
+ function validationPopupErrors (valid, configValidation) { 
   const deleteErrors = Array.from(valid.querySelectorAll(configValidation.inputSelector)); 
-  deleteErrors.forEach(function (item) { 
-    hideInputError(valid, item); 
-  }); 
-  setEventListeners(valid); 
+  deleteErrors.forEach(function (elem) { 
+    hideInputError(valid, elem, configValidation); 
+  });  
  }

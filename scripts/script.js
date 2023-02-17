@@ -83,7 +83,8 @@ popupBtnOpen.addEventListener('click', function(){
   openPopup(popupContainer);
   // Добавили проверку на валидность при открытии
   // Функция блокировки кнопки "сохранить"
-  validationPopupErrors(popupContainer);
+  validationPopupErrors(popupContainer, configObjectValidation);
+  notActivBtn (popupContainer, configObjectValidation);
 });
 
 
@@ -108,8 +109,9 @@ popupCardBtnOpen.addEventListener('click', function(){
   linkInput.value =  linkInput.textContent;
   // Добавили проверку на валидность при открытии
   // Функция блокировки кнопки "сохранить"
-  validationPopupErrors(popupCardContainer);
   openPopup(popupCardContainer);
+  validationPopupErrors(popupCardContainer, configObjectValidation);
+  notActivBtn (popupCardContainer, configObjectValidation);
 });
 
 popupCardBtnClose.addEventListener('click', function(){
@@ -165,9 +167,9 @@ popupImageBtnClose.addEventListener('click', function(){
   closePopup (popupImageContainer);
 });
 
- function closePopupWindow (evt) { 
+function closePopupWindow (evt) { 
   if (evt.target === document.querySelector('.popup_opened')) {
-    closePopup(document.querySelector('.popup_opened'));
+    closePopup(evt.target);
   }
 };
 
@@ -176,3 +178,8 @@ function closePopupEsc (evt) {
     closePopup(document.querySelector('.popup_opened'));
   }
 };
+
+function notActivBtn (item, configValidation) {
+  const submitBtn = item.querySelector(configValidation.submitButtonSelector);
+  submitBtn.disabled = true;
+}
