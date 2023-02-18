@@ -83,8 +83,9 @@ popupBtnOpen.addEventListener('click', function(){
   openPopup(popupContainer);
   // Добавили проверку на валидность при открытии
   // Функция блокировки кнопки "сохранить"
-  validationPopupErrors(popupContainer, configObjectValidation);
   notActivBtn (popupContainer, configObjectValidation);
+  validationPopupErrors(popupContainer, configObjectValidation);
+  
 });
 
 
@@ -110,8 +111,8 @@ popupCardBtnOpen.addEventListener('click', function(){
   // Добавили проверку на валидность при открытии
   // Функция блокировки кнопки "сохранить"
   openPopup(popupCardContainer);
-  validationPopupErrors(popupCardContainer, configObjectValidation);
   notActivBtn (popupCardContainer, configObjectValidation);
+  validationPopupErrors(popupCardContainer, configObjectValidation);
 });
 
 popupCardBtnClose.addEventListener('click', function(){
@@ -182,4 +183,5 @@ function closePopupEsc (evt) {
 function notActivBtn (item, configValidation) {
   const submitBtn = item.querySelector(configValidation.submitButtonSelector);
   submitBtn.disabled = true;
+  submitBtn.classList.add(configValidation.inactiveButtonClass);
 }
